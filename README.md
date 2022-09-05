@@ -11,6 +11,14 @@ Please install these prerequisite to run and test on your local:
 1. Ruby, install through [rbenv](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-macos) first, after that install Ruby `3.1.2` via rbenv.
 2. Install Firefox web-driver `geckodriver` if you want to run the [scrapper](/scrapper) script on your local. run: `brew install geckodriver`
 3. On this project root directory, run: `bundle install`
+4. Export your environment variable on your local for:
+
+    ```
+    RECAPTCHA_SITE_KEY_DEV    # the generated enabled ReCAPTCHA site key
+    RECAPTCHA_SECRET_KEY_DEV  # the generated enabled ReCAPTCHA secret key
+    ```
+
+    Visit here for how to get the [keys](https://developers.google.com/recaptcha/intro).
 
 ## How to run
 
