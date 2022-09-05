@@ -46,7 +46,7 @@ Please install these prerequisite to run and test on your local:
 
 2. When submit the HTML form, ReCAPTCHA JS API, will automatically put field `g-recaptcha-response` for input response token, on payload of the request. __NOTE:__ later when implementation FE/Apps should get this token value, and send it as a field `captchaToken` when TTD POST ORDER request (as on contract).
 
-    Input response token example:
+    Input response token value sample:
 
     ```
     03ANYolqvUUdPy2egLgE8ZuOVABZnxTF8X26Rf4yWkP82YIQysVHjxGXctFKYV71AWakW9bIMB1kiDW_Xxk1Y_lZr8AmJP6cmvrEvt7assXXnUahuDx0GRb-H0dWZPiwciTezuEANBBf0XjQABgyfT59bAdCL9rwcp7WyXS63QYYTCoJmC5pPpiHQ8uEhdseCNHtOGWJOC2sy6PcrQsH_ZAtkQB1gim6Tx-1aqFwm9oPGpvwothRTsMftw6E_C80oxqhpAdPU7j0azheVzsqXYGfq8eRfKeseYqu4Uc4oJqFrHr_TGyZ2jXWZjCrEMJAw1r63BiStn-t5Ptn9KFl892DdcFAveObM1agYX2MSLSghlmrudFuzpzHH9QYdaGQr2M_7x6_67lei31ZEhr1OOtcYRtEHJZXPHJL4cd7to48LV3UHa5bDyzdBVD2E0-7QSHp27qFlAYqys3Q_f9DT-vl4T8pvU_nmZ4WmE_k3ZsCMQO_LHDUjCk8suXKGcdhtvUgQrqt4_yXtW
@@ -54,7 +54,7 @@ Please install these prerequisite to run and test on your local:
 
 3. Backend will verify this input response token by do a HTTP request __POST__ to `https://www.google.com/recaptcha/api/siteverify` ([Doc](https://developers.google.com/recaptcha/docs/verify)).
 
-4. There are several possibility __response__ from Google ReCAPTCHA:
+4. There are several possibilities __response__ from Google ReCAPTCHA:
 
     - __When the input response token is valid__
       
