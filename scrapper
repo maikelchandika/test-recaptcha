@@ -1,0 +1,21 @@
+#! /usr/bin/env ruby
+
+require 'watir'
+
+URL = "http://localhost:4567/"
+
+def log(msg)
+  time = Time.now
+  puts "[#{time.strftime("%Y-%m-%d %H:%M:%S")}] #{msg}"
+end
+
+log "Staring Firefox scapper bot (Headless)"
+
+browser = Watir::Browser.new :firefox, headless: true
+log "Go to URL: #{URL}"
+browser.goto URL
+button = browser.button(id: 'demo-submit-button')
+log "Click the submit button"
+button.click
+browser.close
+log "Done!"

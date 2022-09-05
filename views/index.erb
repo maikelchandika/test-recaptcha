@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>TEST | ReCAPTCHA</title>
+
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  </head>
+
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Testing Google ReCAPTCHA Enterprise</h1>
+        <p class="subtitle">
+          Version: <b>V3</b>
+        </p>
+        <p>
+          <form action="/create" method="POST" id="demo-form">
+            <input type="hidden" name="user[id]" value="1234567">
+            <input type="hidden" name="user[email]" value="mkdika@gmail.com">
+            <button class="g-recaptcha button is-info"
+              id="demo-submit-button"
+              data-sitekey="<%= site_key %>" 
+              data-callback='onSubmit' 
+              data-action='submit'>Post data to Backend</button>
+          </form>
+        </p>
+      </div>
+      <div class="container mt-6">
+        <div class="columns">
+          <div class="column is-10">
+            <% unless token.nil? && response_code.nil?  %>
+            <h1 class="title">ReCAPTCHA Response:</h1>
+            <table class="table is-bordered">
+              <tr>
+                <td>
+                  <b>Input response token</b>
+                </td>
+                <td>
+                  <code><%=token%></code>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <%= response_code %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Body</b>
+                </td>
+                <td>
+                  <code><%=response_body%></code>
+                </td>
+              </tr>
+            </table>
+            <a href="/" class="button is-success">Retry</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script type="text/javascript">
+      function onSubmit(token) {
+        document.getElementById("demo-form").submit();
+      }
+    </script>
+  </body>
+</html>

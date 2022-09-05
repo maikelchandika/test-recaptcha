@@ -1,0 +1,50 @@
+#! /usr/bin/env ruby
+
+require 'sinatra'
+require 'sinatra/reloader'
+require 'HTTParty'
+
+
+# Change the environment variable accordingly
+# ===========================================
+RECAPTCHA_SITE_KEY_DEV    = ENV['RECAPTCHA_SITE_KEY_DEV']
+RECAPTCHA_SECRET_KEY_DEV  = ENV['RECAPTCHA_SECRET_KEY_DEV']
+RECAPTCHA_VERIFY_URL      = 'https://www.google.com/recaptcha/api/siteverify'
+
+# Routes
+# ======
+
+get '/' do
+  erb :index, :locals => {
+    :site_key => RECAPTCHA_SITE_KEY_DEV,
+    :token => nil,
+    :response_code => nil,
+    :response_body => nil
+  }
+end
+
+post '/create' do
+  input_response_token = params['g-recaptcha-response']
+  puts ">>> Incoming request, token: #{input_response_token}\n"
+
+  request_payload = {
+    secret: RECAPTCHA_SECRET_KEY_DEV,
+    response: input_response_token
+  }
+
+  options = {
+    body: request_payload
+  }
+
+  # sleep 121 # simulate token expired in 120 seconds (2 minute)
+
+  response = HTTParty.post(RECAPTCHA_VERIFY_URL, options)
+  puts ">>> ReCAPTCHA response, code: #{response.code}, body: #{response.body}\n"
+
+  erb :index, :locals => {
+    :site_key => RECAPTCHA_SITE_KEY_DEV, 
+    :token => input_response_token, 
+    :response_code => response.code, 
+    :response_body => response.body
+  }
+end
