@@ -117,6 +117,20 @@ Please install these prerequisite to run and test on your local:
       }
       ```
 
+    - __When the same input response token request more than 1 time__
+
+      Response HTTP Code: 200
+
+      ```json
+      {
+        "success": false,
+        "error-codes": [
+          "timeout-or-duplicate"
+        ]
+      }
+      ```
+    
+
 5. __In summary:__ Backend should checking for only HTTP Code 200 and payload field `success` should `true` for valid CAPTCHA request. 
 
 ## Screenshots
