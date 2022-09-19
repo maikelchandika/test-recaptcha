@@ -24,27 +24,27 @@ get '/' do
 end
 
 post '/create' do
-  input_response_token = params['g-recaptcha-response']
-  puts ">>> Incoming request, token: #{input_response_token}\n"
+  # input_response_token = params['g-recaptcha-response']
+  # puts ">>> Incoming request, token: #{input_response_token}\n"
 
-  request_payload = {
-    secret: RECAPTCHA_SECRET_KEY_DEV,
-    response: input_response_token
-  }
+  # request_payload = {
+  #   secret: RECAPTCHA_SECRET_KEY_DEV,
+  #   response: input_response_token
+  # }
 
-  options = {
-    body: request_payload
-  }
+  # options = {
+  #   body: request_payload
+  # }
 
-  # sleep 121 # simulate token expired in 120 seconds (2 minute)
+  # # sleep 121 # simulate token expired in 120 seconds (2 minute)
 
-  response = HTTParty.post(RECAPTCHA_VERIFY_URL, options)
-  puts ">>> ReCAPTCHA response, code: #{response.code}, body: #{response.body}\n"
+  # response = HTTParty.post(RECAPTCHA_VERIFY_URL, options)
+  # puts ">>> ReCAPTCHA response, code: #{response.code}, body: #{response.body}\n"
 
-  erb :index, :locals => {
-    :site_key => RECAPTCHA_SITE_KEY_DEV, 
-    :token => input_response_token, 
-    :response_code => response.code, 
-    :response_body => response.body
-  }
+  # erb :index, :locals => {
+  #   :site_key => RECAPTCHA_SITE_KEY_DEV, 
+  #   :token => input_response_token, 
+  #   :response_code => response.code, 
+  #   :response_body => response.body
+  # }
 end
